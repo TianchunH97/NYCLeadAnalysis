@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Prevalence and Effects of Lead in NYC's Water System"
+author: "Tianchun Huang, Erdong Wang, Jiaxi Zhou"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
