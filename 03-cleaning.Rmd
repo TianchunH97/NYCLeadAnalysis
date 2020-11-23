@@ -1,1 +1,56 @@
 # Data transformation
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load data
+
+Datasets are first downloaded as csv files and then read into R. 
+
+```{r}
+free_residential <- read.csv("Free_Residential_at-the-tap_Lead_and_Copper_Data.csv")
+compliance <- read.csv("Compliance_at-the-tap_Lead_and_Copper_Data.csv")
+children_6_yrs <- read.csv("Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv")
+children_by_3 <- read.csv("Children_Tested_for_Lead_by_Age_3.csv")
+```
+
+## Capitalize all borough names
+
+In the two datasets for at-the-tap water test results, the "Borough" column contain both uppercase and lowercase strings while refering to the same borough, hence we transformed all rows of "Borough" column to be uppercase strings.
+
+```{r}
+free_residential$Borough <- toupper(free_residential$Borough)
+compliance$Borough <- toupper(compliance$Borough)
+```
+
+## Unify units of lead level
+
+The units of at-the-tap lead level are different in two datasets. Hence, we transform the unit in "compliance" data from $\mu g/l$ to $mg/l$.
+
+```{r}
+compliance$First.Draw.at.the.tap.Lead.level..µg.l. <- 0.001 * compliance$First.Draw.at.the.tap.Lead.level..µg.l.
+colnames(compliance)[6] <- "First.Draw.at.the.tap.Lead.level..mg.l."
+```
+
+## Concat two datasets
+
+Since two at-the-tap lead level datasets have many variables in common, we pick out their common columns and merge them to be a single large table. Meanwhile, we add an extra column to denote which dataset the observation is originally from.
+
+```{r}
+len_fr <- length(free_residential$Kit.ID)
+len_cp <- length(compliance$KIT.ID.Number)
+from_fr <- c()
+for (i in 1:len_fr){
+  from_fr<-c(from_fr,"free residential")
+}
+free_residential$source <- from_fr
+from_cp <- c()
+for (i in 1:len_cp){
+  from_cp<-c(from_cp,"free residential")
+}
+compliance$source <- from_cp
+colnames(free_residential)[c(1,2,3,4,5,6,9,12)] <- colnames(compliance)
+merged_col <- colnames(free_residential)[c(1,2,3,4,5,6,9,12)]
+at_the_tap_merged <- rbind(compliance, free_residential[merged_col])
+```

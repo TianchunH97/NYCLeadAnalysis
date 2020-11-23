@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data transformation | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 3 Data transformation | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 3 Data transformation | Prevalence and Effects of Lead in NYC's Water System</title>
+  <meta name="description" content="Chapter 3 Data transformation | Prevalence and Effects of Lead in NYC's Water System" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data transformation | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 3 Data transformation | Prevalence and Effects of Lead in NYC's Water System" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data transformation | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 3 Data transformation | Prevalence and Effects of Lead in NYC's Water System" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Tianchun Huang, Erdong Wang, Jiaxi Zhou" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="data-sources.html"/>
 <link rel="next" href="missing-values.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +50,45 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,12 +103,17 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">NYC Lead Analysis</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#load-data"><i class="fa fa-check"></i><b>3.1</b> Load data</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#capitalize-all-borough-names"><i class="fa fa-check"></i><b>3.2</b> Capitalize all borough names</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#unify-units-of-lead-level"><i class="fa fa-check"></i><b>3.3</b> Unify units of lead level</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#concat-two-datasets"><i class="fa fa-check"></i><b>3.4</b> Concat two datasets</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
@@ -89,7 +129,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prevalence and Effects of Lead in NYC's Water System</a>
           </h1>
         </div>
 
@@ -97,9 +137,48 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-transformation" class="section level1" number="3">
+<div id="data-transformation" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
+<div id="load-data" class="section level2">
+<h2><span class="header-section-number">3.1</span> Load data</h2>
+<p>Datasets are first downloaded as csv files and then read into R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">free_residential &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Free_Residential_at-the-tap_Lead_and_Copper_Data.csv&quot;</span>)
+compliance &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Compliance_at-the-tap_Lead_and_Copper_Data.csv&quot;</span>)
+children_6_yrs &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv&quot;</span>)
+children_by_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Children_Tested_for_Lead_by_Age_3.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="capitalize-all-borough-names" class="section level2">
+<h2><span class="header-section-number">3.2</span> Capitalize all borough names</h2>
+<p>In the two datasets for at-the-tap water test results, the &quot;Borough&quot; column contain both uppercase and lowercase strings while refering to the same borough, hence we transformed all rows of &quot;Borough&quot; column to be uppercase strings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">free_residential<span class="op">$</span>Borough &lt;-<span class="st"> </span><span class="kw">toupper</span>(free_residential<span class="op">$</span>Borough)
+compliance<span class="op">$</span>Borough &lt;-<span class="st"> </span><span class="kw">toupper</span>(compliance<span class="op">$</span>Borough)</code></pre></div>
+</div>
+<div id="unify-units-of-lead-level" class="section level2">
+<h2><span class="header-section-number">3.3</span> Unify units of lead level</h2>
+<p>The units of at-the-tap lead level are different in two datasets. Hence, we transform the unit in &quot;compliance&quot; data from <span class="math inline">\(\mu g/l\)</span> to <span class="math inline">\(mg/l\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">compliance<span class="op">$</span>First.Draw.at.the.tap.Lead.level..µg.l. &lt;-<span class="st"> </span><span class="fl">0.001</span> <span class="op">*</span><span class="st"> </span>compliance<span class="op">$</span>First.Draw.at.the.tap.Lead.level..µg.l.
+<span class="kw">colnames</span>(compliance)[<span class="dv">6</span>] &lt;-<span class="st"> &quot;First.Draw.at.the.tap.Lead.level..mg.l.&quot;</span></code></pre></div>
+</div>
+<div id="concat-two-datasets" class="section level2">
+<h2><span class="header-section-number">3.4</span> Concat two datasets</h2>
+<p>Since two at-the-tap lead level datasets have many variables in common, we pick out their common columns and merge them to be a single large table. Meanwhile, we add an extra column to denote which dataset the observation is originally from.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">len_fr &lt;-<span class="st"> </span><span class="kw">length</span>(free_residential<span class="op">$</span>Kit.ID)
+len_cp &lt;-<span class="st"> </span><span class="kw">length</span>(compliance<span class="op">$</span>KIT.ID.Number)
+from_fr &lt;-<span class="st"> </span><span class="kw">c</span>()
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>len_fr){
+  from_fr&lt;-<span class="kw">c</span>(from_fr,<span class="st">&quot;free residential&quot;</span>)
+}
+free_residential<span class="op">$</span>source &lt;-<span class="st"> </span>from_fr
+from_cp &lt;-<span class="st"> </span><span class="kw">c</span>()
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>len_cp){
+  from_cp&lt;-<span class="kw">c</span>(from_cp,<span class="st">&quot;free residential&quot;</span>)
+}
+compliance<span class="op">$</span>source &lt;-<span class="st"> </span>from_cp
+<span class="kw">colnames</span>(free_residential)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)] &lt;-<span class="st"> </span><span class="kw">colnames</span>(compliance)
+merged_col &lt;-<span class="st"> </span><span class="kw">colnames</span>(free_residential)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)]
+at_the_tap_merged &lt;-<span class="st"> </span><span class="kw">rbind</span>(compliance, free_residential[merged_col])</code></pre></div>
 
+</div>
 </div>
             </section>
 
@@ -138,7 +217,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/03-cleaning.Rmd",
+"link": "https://github.com/TianchunH97/NYCLeadAnalysis/edit/main/03-cleaning.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +225,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/03-cleaning.Rmd",
+"link": "https://github.com/TianchunH97/NYCLeadAnalysis/blob/main/03-cleaning.Rmd",
 "text": null
 },
 "download": null,
@@ -157,6 +236,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
