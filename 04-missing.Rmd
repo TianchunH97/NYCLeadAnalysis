@@ -1,1 +1,14 @@
 # Missing values
+```{r warning=FALSE}
+Free_Residential_at_the_tap_Lead_and_Copper_Data<-read.csv("Free_Residential_at-the-tap_Lead_and_Copper_Data.csv")
+extracat::visna(Free_Residential_at_the_tap_Lead_and_Copper_Data, sort = "b")
+
+```
+```{r, warning=FALSE}
+Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_ <- read.csv("Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv")
+extracat::visna(Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_, sort = "b")
+```
+
+We have four datasets in total. In the "Compliance at-the-tap Lead and Copper" dataset, there is no missing value. In the "Children Tested for Lead by Age 3" dataset, the only two variables that have missing values are `Children.tested.for.lead.by.age.3.years.Number._NOTES` and `Children.tested.for.lead.by.age.3.years.Percentage._NOTES`. In fact all the data values in these two variables are missing. These two variables are supposed to store additional notes apply to the other two variables. The reason for the missing values might be that the notes are totally unnecessary. We may delete these two columns.
+
+The other two datasets have missing values which show some distribution patterns so we will make visna plots to analysis it. From the first plot, we see that in "Free Residential at-the-tap Lead and Copper" dataset, there are 6 columns that have missing values. Most rows miss data from the variable `Lead.5.Minute.Flush..mg.L.` and `Copper.5.minute.Flush..mg.L.`. These two variables store the concentration of lead and copper in the 5 minute flush sample. Since all the water samples are collected by residents using sampling kits provided by DEP, the reason for the missing value might be that most residents are unwilling to waste time and water to keep the tap opening for 5 minutes. Very few rows have missing values in other variables and the pattern is random. In the "Children Under 6 yrs with Elevated Blood Lead Levels", the variable `Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested._NOTES` has missing values in all rows. We can just delete all columns with 'notes' since they are meaning less to our analysis. There are also some missing values in the variable `borough_id`. In each row with the missing value, the `geo_area_name` is `New York City`. We can conclude that they did not assign a borough id to New York City.
