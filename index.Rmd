@@ -6,4 +6,14 @@ site: bookdown::bookdown_site
 ---
 
 # Introduction
+Lead contamination in drinking water is a serious issue for New York residents. Although NYC Environmental Protection Agency promised that the water is virtually lead-free when delivered from reservoir system, the water out of the tap can still contain lead by absorbing it from pipes and fixtures. Therefore, New York residents are potentially exposed to the threat of lead poisoning caused by lead in drinking water. 
+
+Lead poisoning can be harmful to humans in many ways, especially in kidneys and nervous system, even cancer. Lead is also dangerous to growing up children by putting them into risks of future diseases and health problems. In this project, we are going to analysis the prevalence of lead contamination in New York water system, how it affects children in lead poisoning and how the two are related. We are going to present our analysis by answering the following three questions:
+
+1. Lead in at-the-tap water - How prevalent is lead in NYC water system? Which part of the city has most serious health risk caused by lead in water?
+
+2. Lead in children's blood - How are children in NYC affected by lead poisoning?
+
+3. Relationship - Is there any relationship between the lead in NYC water system and the lead level in children's blood?
+
 

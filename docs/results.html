@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Results | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 5 Results | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 5 Results | Prevalence and Effects of Lead in NYC’s Water System</title>
+  <meta name="description" content="Chapter 5 Results | Prevalence and Effects of Lead in NYC’s Water System" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 5 Results | Prevalence and Effects of Lead in NYC’s Water System" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 5 Results | Prevalence and Effects of Lead in NYC’s Water System" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Tianchun Huang, Erdong Wang, Jiaxi Zhou" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="missing-values.html"/>
 <link rel="next" href="interactive-component.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 
@@ -68,14 +69,27 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">NYC Lead Analysis</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#free-residential-at-the-tap-lead-and-copper-data"><i class="fa fa-check"></i><b>2.1</b> Free Residential at-the-tap Lead and Copper Data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#compliance-at-the-tap-lead-and-copper-data"><i class="fa fa-check"></i><b>2.2</b> Compliance at-the-tap Lead and Copper Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#children-tested-for-lead-by-age-3"><i class="fa fa-check"></i><b>2.3</b> Children Tested for Lead by Age 3</a></li>
+<li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#children-under-6-yrs-with-elevated-blood-lead-levels-bll"><i class="fa fa-check"></i><b>2.4</b> Children Under 6 yrs with Elevated Blood Lead Levels (BLL)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#load-data"><i class="fa fa-check"></i><b>3.1</b> Load data</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#capitalize-all-borough-names"><i class="fa fa-check"></i><b>3.2</b> Capitalize all borough names</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#unify-units-of-lead-level"><i class="fa fa-check"></i><b>3.3</b> Unify units of lead level</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#concat-two-datasets"><i class="fa fa-check"></i><b>3.4</b> Concat two datasets</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#how-prevalent-is-lead-in-nyc-water-system"><i class="fa fa-check"></i><b>5.1</b> How prevalent is lead in NYC water system?</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#how-are-children-in-nyc-affected-by-lead-poisoning"><i class="fa fa-check"></i><b>5.2</b> How are children in NYC affected by lead poisoning?</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -89,7 +103,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prevalence and Effects of Lead in NYC’s Water System</a>
           </h1>
         </div>
 
@@ -97,9 +111,27 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1" number="5">
+<div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="how-prevalent-is-lead-in-nyc-water-system" class="section level2">
+<h2><span class="header-section-number">5.1</span> How prevalent is lead in NYC water system?</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We studied two datasets for prevalence of lead in at-the-tap water. One is from water samples tested under compliance, marked as red, and the other is tested upon residents’ request, marked as blue.</p>
+<p>According to EPA(Environmental Protection Agency), the maximum allowable concentration of lead in drinking water is 15 µg/L. The grouped bar chart shows the percentage of water sample containing lead over the threshold(15 µg/L) every year from 2014 to 2019. From the chart, we can observe that percentage of water samples containing lead over15 µg/L from both compliance and residents decreased by year. The decrease of contaminated percentage is more remarkable in free-residential water samples, with almost half drop from year 2015 to year 2016. The reason might be that the government has been addressing the issue of lead-contaminated water more seriously and the technology improved the effect of drinking water purifying. However, by the end of year 2019, the percentage of water samples containing lead over the threshold from residents is still over 3.8% and that from compliance is even higher, over 5%. The issue of lead-contaminated water still presents and it poses a strong threat to citizens’ health.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Since lead in water seems inevitable in New York, we are finding a way to reduce the lead concentration in our drinking water as much as possible. Minnesota Department of Health suggested that we should let the water run for some time before using water for drinking and cooking. They stated that it is an efficient way to reduce our exposure to lead in water because the more time water has been staying in pipes, the higher the lead concentration it.</p>
+<p>We use the “Free Residential at-the-tap Lead and Copper Data” dataset to test this hypothesis. Each residential volunteer submitted two water samples: one is collected right after the tap is opened and the other is collected after the tap has flushed for 1-2 minutes. We use a ridgeline plot to compare the lead concentration between two types of water samples. The plot gives us two density curves with lead concentration of water samples on the x-axis and density on the y-axis, one for first draw samples and the other for 1-2 minute draw. We can observe that among 1-2 minutes draw samples,the percentage of water samples with lead concentration around 0 is higher than that of first draw samples. On the contrary, the percentage of water samples with large lead concentration is higher in 1-2 minutes draw samples. Therefore, we can conclude that lead concentration in water will decrease as the tap is opening and we can reduce our exposure to lead in drinking water by waiting for some time after opening the tap.</p>
+</div>
+<div id="how-are-children-in-nyc-affected-by-lead-poisoning" class="section level2">
+<h2><span class="header-section-number">5.2</span> How are children in NYC affected by lead poisoning?</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We subset our dataset to focus on the blood lead levels (BLL) of children living in New York City. The Centers for Disease Control and Prevention considers a blood lead level over 10 μg/dL abnormal but a level lower than 10 μg/dL might also be harmful. In the stacked bar chart above, we summarize in each year, the number of children with BBL &gt;= 5 μg/dL per 1000 tested. We can observe that the number is decreasing every year. However, there are still many children harmed by lead every year. Therefore, we should attach great importance to the problem of lead contamination in water.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>From this Cleveland plots, we can figure out from 2005 to 2016, for each region in New York, how many children under 6 years old in total are tested lead concentration in blood, marked as blue, and among those tested, how many children in total has blood lead level over 5 μg/dL per 1000 tested in , marked as red. The graph will tell us how many children are affected by lead and whether the number of high BLL children per 1000 tested is related to the sample size. The sample size in different regions may differ because population sizes are different and test capabilities are different. We want to figure out if the difference in sample sizes affects the difference in ratio of children with high BLL.</p>
+<p>In the graph, regions are sorted by the number of children with high BLL per 1000 tested in an decreasing order. We can observe that as the red points are ordered, blue points are scattered so there is no obvious pattern of relationship between sample size and number of high BLL children. Some regions such as New York City and Queens have large sample sizes but they can still have a low number of high BLL children per 1000 tested. Therefore, the numbers of high BLL children per 1000 tested from different regions are not biased by the difference in sample sizes.</p>
+<p>From the plot, we can see that the high BLL rates in different regions differ. Some regions such as Greenpoint and Borough Park has high BLL rates while some regions such as Upper East Side and Willowbrook has much lower BLL rates than other regions. The reason might be that in some places the water pipes and solders contain more lead and government should notice that and replace some of them to guarantee the health of residents.</p>
 
+</div>
 </div>
             </section>
 
@@ -138,7 +170,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/05-results.Rmd",
+"link": "https://github.com/TianchunH97/NYCLeadAnalysis/edit/main/05-results.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +178,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/05-results.Rmd",
+"link": "https://github.com/TianchunH97/NYCLeadAnalysis/blob/main/05-results.Rmd",
 "text": null
 },
 "download": null,

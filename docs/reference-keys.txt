@@ -13,3 +13,5 @@ free-residential-at-the-tap-lead-and-copper-data
 compliance-at-the-tap-lead-and-copper-data
 children-tested-for-lead-by-age-3
 children-under-6-yrs-with-elevated-blood-lead-levels-bll
+how-prevalent-is-lead-in-nyc-water-system
+how-are-children-in-nyc-affected-by-lead-poisoning

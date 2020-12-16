@@ -1,1 +1,131 @@
 # Results
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggridges)
+```
+
+## How prevalent is lead in NYC water system?
+```{r, warning=FALSE, message=FALSE}
+free_residential <- read.csv("free_residential.csv")
+compliance <- read.csv("compliance.csv")
+children_6_yrs <- read.csv("Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv")
+lead_free <- free_residential %>%
+  select(Date.Collected, First.Draw.at.the.tap.Lead.level..Âµg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
+  mutate(year = substr(Date.Collected, 7, 10), over_threshold = (First.Draw.at.the.tap.Lead.level..Âµg.l. > 0.015 |  Lead.1.2.Minute.Flush..mg.L. > 0.015)) %>%
+  select(year, over_threshold) %>%
+  group_by(year, over_threshold) %>%
+  summarise(count = n()) %>%
+  na.omit %>%
+  group_by(year) %>%
+  mutate(total = sum(count)) %>%
+  filter(over_threshold == TRUE) %>%
+  mutate(ratio = count / total) %>%
+  select(year, ratio) %>%
+  mutate(type = "Percentage of water samples containing lead over threshold(Free-residential)")
+
+lead_compliance <- compliance %>%
+  select(Date.Collected, First.Draw.at.the.tap.Lead.level..mg.l.) %>%
+  mutate(year = substr(Date.Collected, 7, 10), over_threshold = (First.Draw.at.the.tap.Lead.level..mg.l. > 0.015 )) %>%
+  select(year, over_threshold) %>%
+  group_by(year, over_threshold) %>%
+  summarise(count = n()) %>%
+  na.omit %>%
+  group_by(year) %>%
+  mutate(total = sum(count)) %>%
+  filter(over_threshold == TRUE) %>%
+  mutate(ratio = count / total) %>%
+  select(year, ratio) %>%
+  mutate(type = "Percentage of water samples containing lead over threshold(Compliance)")
+
+combined <- rbind(lead_free, lead_compliance)
+ggplot(data = combined, aes(fill= type, x = year, y=ratio)) +
+ geom_bar(stat="identity", position = "dodge") +
+ theme(legend.position="bottom") +
+ guides(fill = guide_legend(nrow = 2)) +
+ ggtitle("Prevalence of Lead in At-the-tap Water") +
+ theme(plot.title = element_text(lineheight=.8, face="bold"))
+```
+
+We studied two datasets for prevalence of lead in at-the-tap water. One is from water samples tested under compliance, marked as red, and the other is tested upon residents' request, marked as blue.
+
+According to EPA(Environmental Protection Agency), the maximum allowable concentration of lead in drinking water is 15 µg/L. The grouped bar chart shows the percentage of water sample containing lead over the threshold(15 µg/L) every year from 2014 to 2019. From the chart, we can observe that percentage of water samples containing lead over15 µg/L from both compliance and residents decreased by year. The decrease of contaminated percentage is more remarkable in free-residential water samples, with almost half drop from year 2015 to year 2016. The reason might be that the government has been addressing the issue of lead-contaminated water more seriously and the technology improved the effect of drinking water purifying. However, by the end of year 2019, the percentage of water samples containing lead over the threshold from residents is still over 3.8% and that from compliance is even higher, over 5%. The issue of lead-contaminated water still presents and it poses a strong threat to citizens' health.
+
+
+```{r, warning=FALSE, message=FALSE, results=FALSE}
+lead_con <- free_residential %>%
+  select( First.Draw.at.the.tap.Lead.level..Âµg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
+  na.omit %>%
+  rename(first.draw = First.Draw.at.the.tap.Lead.level..Âµg.l., "1-2.minute.draw" = Lead.1.2.Minute.Flush..mg.L. ) %>%
+  pivot_longer(cols = everything(), names_to = "Density", values_to = "Lead Concentration(mg/L)") %>%
+  filter(`Lead Concentration(mg/L)` < 0.01)
+
+ggplot(lead_con, aes(x = `Lead Concentration(mg/L)`, y = Density)) + 
+  geom_density_ridges_gradient(fill = "#00AFBB") +
+  theme_ridges() +
+  ggtitle("Compare Lead Concentration between First-draw Sample \n and 1-2-minute-flush Sample") +
+  theme(plot.title = element_text(lineheight=.8, face="bold", hjust = 0.5))
+  
+
+```
+
+Since lead in water seems inevitable in New York, we are finding a way to reduce the lead concentration in our drinking water as much as possible. Minnesota Department of Health suggested that we should let the water run for some time before using water for drinking and cooking. They stated that it is an efficient way to reduce our exposure to lead in water because the more time water has been staying in pipes, the higher the lead concentration it. 
+
+We use the "Free Residential at-the-tap Lead and Copper Data" dataset to test this hypothesis. Each residential volunteer submitted two water samples: one is collected right after the tap is opened and the other is collected after the tap has flushed for 1-2 minutes. We use a ridgeline plot to compare the lead concentration between two types of water samples. The plot gives us two density curves with lead concentration of water samples on the x-axis and density on the y-axis, one for first draw samples and the other for 1-2 minute draw. We can observe that among 1-2 minutes draw samples,the percentage of water samples with lead concentration around 0 is higher than that of first draw samples. On the contrary, the percentage of water samples with large lead concentration is higher in 1-2 minutes draw samples. Therefore, we can conclude that lead concentration in water will decrease as the tap is opening and we can reduce our exposure to lead in drinking water by waiting for some time after opening the tap. 
+
+## How are children in NYC affected by lead poisoning?
+```{r, warning=FALSE, message=FALSE}
+children_bar <- children_6_yrs %>% rename(`5 <= BLL <10 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.Âµg.dL.per.1.000.tested, `10 <= BLL <15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..10.Âµg.dL.per.1.000.tested, `BLL >=15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..15.Âµg.dL.per.1.000.tested) %>%
+  rename(year = time_period) %>%
+  mutate(year = as.character(year)) %>%
+  filter(geo_type =="Citywide") %>%
+  select(year, `5 <= BLL <10 (mcg/dL)`, `10 <= BLL <15 (mcg/dL)`, `BLL >=15 (mcg/dL)`) %>%
+  na.omit %>%
+  group_by(year) %>% 
+  summarise(`5 <= BLL <10 (mcg/dL)` = sum(`5 <= BLL <10 (mcg/dL)`), `10 <= BLL <15 (mcg/dL)` = sum(`10 <= BLL <15 (mcg/dL)`), `BLL >=15 (mcg/dL)` = sum(`BLL >=15 (mcg/dL)`)) %>% 
+  mutate(`5 <= BLL <10 (mcg/dL)` = `5 <= BLL <10 (mcg/dL)` - `10 <= BLL <15 (mcg/dL)`, `10 <= BLL <15 (mcg/dL)` = `10 <= BLL <15 (mcg/dL)` - `BLL >=15 (mcg/dL)`) %>%
+  pivot_longer(cols = !year, names_to = "range", values_to = "Number of children with BLL >= 5 per 1000 tested")
+
+ggplot(data = children_bar, aes(x = year, y=`Number of children with BLL >= 5 per 1000 tested`, fill = factor(range, levels=c("BLL >=15 (mcg/dL)", "10 <= BLL <15 (mcg/dL)", "5 <= BLL <10 (mcg/dL)")))) +
+  geom_bar(stat='identity') +
+  theme(legend.title = element_blank()) +
+  scale_fill_manual(values = c("#F8766D","#7C9B99", "#00BFC4")) +
+  ggtitle("Children’s Blood Lead Levels (BLL) in NYC") +
+  theme(plot.title = element_text(lineheight=.8, face="bold", hjust = 0.5))
+```
+
+We subset our dataset to focus on the blood lead levels (BLL) of children living in New York City. The Centers for Disease Control and Prevention considers a blood lead level over 10 μg/dL abnormal but a level lower than 10 μg/dL might also be harmful. In the stacked bar chart above, we summarize in each year, the number of children with BBL >= 5 μg/dL per 1000 tested. We can observe that the number is decreasing every year. However, there are still many children harmed by lead every year. Therefore, we should attach great importance to the problem of lead contamination in water. 
+
+
+
+
+```{r, warning=FALSE, message=FALSE}
+children <- children_6_yrs %>%
+  rename(`sample_size(in thousand)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested, `high_BLL_children_per_1000_tested(sum of 2005-2016)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.Âµg.dL.per.1.000.tested) %>%
+  select(geo_area_name, `sample_size(in thousand)`, `high_BLL_children_per_1000_tested(sum of 2005-2016)`) %>%
+  group_by(geo_area_name) %>%
+  summarise(`sample_size(in thousand)` = sum(`sample_size(in thousand)`), `high_BLL_children_per_1000_tested(sum of 2005-2016)` = sum(`high_BLL_children_per_1000_tested(sum of 2005-2016)`))
+
+children$`sample_size(in thousand)` = children$`sample_size(in thousand)` / 1000
+children <- children %>% pivot_longer(col = !geo_area_name, names_to = "data_type", values_to = "value")
+ggplot(children, aes(value, fct_reorder2(`geo_area_name`, `data_type`=="high_BLL_children_per_1000_tested(sum of 2005-2016)", value, .desc = FALSE), color = data_type)) +
+  geom_point() + 
+  ggtitle("Sample Size and High BBL Rate Grouped by Area") + 
+  theme(legend.position="bottom") +
+  theme(axis.text.y = element_text(size = rel(.75))) +
+  ylab("") +
+  theme(plot.title = element_text(lineheight=.8, face="bold", hjust = 0.5)) + 
+  guides(color = guide_legend(nrow = 2))
+
+```
+
+From this Cleveland plots, we can figure out from 2005 to 2016, for each region in New York, how many children under 6 years old in total are tested lead concentration in blood, marked as blue, and among those tested, how many children in total has blood lead level over 5 μg/dL per 1000 tested in , marked as red. The graph will tell us how many children are affected by lead and whether the number of high BLL children per 1000 tested is related to the sample size. The sample size in different regions may differ because population sizes are different and test capabilities are different. We want to figure out if the difference in sample sizes affects the difference in ratio of children with high BLL.
+
+In the graph, regions are sorted by the number of children with high BLL per 1000 tested in an decreasing order. We can observe that as the red points are ordered, blue points are scattered so there is no obvious pattern of relationship between sample size and number of high BLL children. Some regions such as New York City and Queens have large sample sizes but they can still have a low number of high BLL children per 1000 tested. Therefore, the numbers of high BLL children per 1000 tested from different regions are not biased by the difference in sample sizes.
+
+From the plot, we can see that the high BLL rates in different regions differ. Some regions such as Greenpoint and Borough Park has high BLL rates while some regions such as Upper East Side and Willowbrook has much lower BLL rates than other regions. The reason might be that in some places the water pipes and solders contain more lead and government should notice that and replace some of them to guarantee the health of residents.
+
+
+
+
+
