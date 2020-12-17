@@ -1,0 +1,301 @@
+"","Zipcode","source","rate"
+"1",10000,"free residential",0.0588235294117647
+"2",10001,"free residential",0.012987012987013
+"3",10002,"free residential",0.0324324324324324
+"4",10003,"free residential",0.0285714285714286
+"5",10004,"free residential",0
+"6",10005,"free residential",0
+"7",10006,"free residential",0
+"8",10007,"free residential",0
+"9",10009,"free residential",0.0168776371308017
+"10",10010,"compliance",0
+"11",10010,"free residential",0.00833333333333333
+"12",10011,"free residential",0.00803212851405622
+"13",10012,"free residential",0.0236220472440945
+"14",10013,"compliance",0.5
+"15",10013,"free residential",0.0191082802547771
+"16",10014,"free residential",0.037037037037037
+"17",10016,"free residential",0.0358974358974359
+"18",10017,"free residential",0.0394736842105263
+"19",10018,"compliance",0
+"20",10018,"free residential",0
+"21",10019,"free residential",0.0116959064327485
+"22",10021,"free residential",0.0234375
+"23",10022,"free residential",0
+"24",10023,"free residential",0.0179640718562874
+"25",10024,"free residential",0.0179948586118252
+"26",10025,"free residential",0.0272904483430799
+"27",10026,"free residential",0.0357142857142857
+"28",10027,"free residential",0.0163934426229508
+"29",10028,"free residential",0.0223463687150838
+"30",10029,"free residential",0.015748031496063
+"31",10030,"free residential",0.0727272727272727
+"32",10031,"free residential",0.0277777777777778
+"33",10032,"free residential",0.0294117647058824
+"34",10033,"free residential",0.028735632183908
+"35",10034,"free residential",0.0116959064327485
+"36",10035,"free residential",0.0217391304347826
+"37",10036,"free residential",0.0384615384615385
+"38",10037,"free residential",0.0235294117647059
+"39",10038,"free residential",0
+"40",10039,"free residential",0
+"41",10040,"free residential",0
+"42",10044,"free residential",0.0263157894736842
+"43",10065,"free residential",0
+"44",10069,"free residential",0
+"45",10075,"compliance",0
+"46",10075,"free residential",0.0210526315789474
+"47",10103,"free residential",0
+"48",10128,"compliance",0.2
+"49",10128,"free residential",0.0265486725663717
+"50",10155,"free residential",0
+"51",10162,"free residential",0
+"52",10179,"free residential",0
+"53",10271,"free residential",0
+"54",10280,"free residential",0
+"55",10282,"free residential",0
+"56",10301,"compliance",0.125
+"57",10301,"free residential",0.0285714285714286
+"58",10302,"free residential",0.0869565217391304
+"59",10303,"compliance",0.0416666666666667
+"60",10303,"free residential",0
+"61",10304,"compliance",0.243243243243243
+"62",10304,"free residential",0.0196078431372549
+"63",10305,"compliance",0.0444444444444444
+"64",10305,"free residential",0.0298507462686567
+"65",10306,"compliance",0.0432098765432099
+"66",10306,"free residential",0.0825688073394495
+"67",10307,"compliance",0
+"68",10307,"free residential",0.0666666666666667
+"69",10308,"compliance",0.0165289256198347
+"70",10308,"free residential",0.0192307692307692
+"71",10309,"compliance",0.0478468899521531
+"72",10309,"free residential",0.037037037037037
+"73",10310,"compliance",0.0476190476190476
+"74",10310,"free residential",0.0487804878048781
+"75",10312,"compliance",0.0816326530612245
+"76",10312,"free residential",0
+"77",10314,"compliance",0.0746268656716418
+"78",10314,"free residential",0.00709219858156028
+"79",10451,"free residential",0
+"80",10452,"free residential",0.0571428571428571
+"81",10453,"free residential",0
+"82",10454,"free residential",0
+"83",10455,"free residential",0.0588235294117647
+"84",10456,"free residential",0
+"85",10457,"compliance",0
+"86",10457,"free residential",0
+"87",10458,"free residential",0
+"88",10459,"free residential",0.0476190476190476
+"89",10460,"compliance",0
+"90",10460,"free residential",0
+"91",10461,"compliance",0.0714285714285714
+"92",10461,"free residential",0.0617283950617284
+"93",10462,"compliance",0.166666666666667
+"94",10462,"free residential",0.0298507462686567
+"95",10463,"compliance",0.0526315789473684
+"96",10463,"free residential",0.0434782608695652
+"97",10464,"compliance",0
+"98",10464,"free residential",0
+"99",10465,"compliance",0
+"100",10465,"free residential",0.0454545454545455
+"101",10466,"free residential",0.0833333333333333
+"102",10467,"free residential",0.021505376344086
+"103",10468,"free residential",0.0208333333333333
+"104",10469,"compliance",0
+"105",10469,"free residential",0
+"106",10470,"compliance",0
+"107",10470,"free residential",0
+"108",10471,"compliance",0.0714285714285714
+"109",10471,"free residential",0
+"110",10472,"free residential",0.025
+"111",10473,"free residential",0.0333333333333333
+"112",10474,"free residential",0
+"113",10475,"free residential",0.0128205128205128
+"114",10701,"free residential",0
+"115",11001,"compliance",0
+"116",11001,"free residential",0
+"117",11004,"free residential",0
+"118",11005,"free residential",0
+"119",11040,"free residential",0
+"120",11101,"compliance",0
+"121",11101,"free residential",0.0142857142857143
+"122",11102,"compliance",0
+"123",11102,"free residential",0.0185185185185185
+"124",11103,"compliance",0
+"125",11103,"free residential",0.0310077519379845
+"126",11104,"compliance",0
+"127",11104,"free residential",0.00632911392405063
+"128",11105,"compliance",0.222222222222222
+"129",11105,"free residential",0.0416666666666667
+"130",11106,"compliance",0
+"131",11106,"free residential",0.0405405405405405
+"132",11109,"free residential",0.0416666666666667
+"133",11201,"compliance",0
+"134",11201,"free residential",0.0143198090692124
+"135",11203,"compliance",0
+"136",11203,"free residential",0.104477611940299
+"137",11204,"compliance",0.05
+"138",11204,"free residential",0.0144927536231884
+"139",11205,"compliance",0
+"140",11205,"free residential",0.0486486486486487
+"141",11206,"compliance",0.25
+"142",11206,"free residential",0.0185185185185185
+"143",11207,"compliance",0
+"144",11207,"free residential",0.0365853658536585
+"145",11208,"compliance",0
+"146",11208,"free residential",0.0526315789473684
+"147",11209,"compliance",0.153846153846154
+"148",11209,"free residential",0.0348432055749129
+"149",11210,"compliance",0
+"150",11210,"free residential",0.0425531914893617
+"151",11211,"compliance",0
+"152",11211,"free residential",0.0196850393700787
+"153",11212,"compliance",0
+"154",11212,"free residential",0
+"155",11213,"compliance",0
+"156",11213,"free residential",0.0273972602739726
+"157",11214,"compliance",0
+"158",11214,"free residential",0.0303030303030303
+"159",11215,"compliance",0.09375
+"160",11215,"free residential",0.0395408163265306
+"161",11216,"compliance",0.272727272727273
+"162",11216,"free residential",0.0609318996415771
+"163",11217,"compliance",0.111111111111111
+"164",11217,"free residential",0.0186170212765957
+"165",11218,"compliance",0.0909090909090909
+"166",11218,"free residential",0.0467836257309941
+"167",11219,"compliance",0
+"168",11219,"free residential",0
+"169",11220,"compliance",0
+"170",11220,"free residential",0.0272108843537415
+"171",11221,"compliance",0
+"172",11221,"free residential",0.0678733031674208
+"173",11222,"compliance",0
+"174",11222,"free residential",0.0151057401812689
+"175",11223,"compliance",0.0416666666666667
+"176",11223,"free residential",0.072289156626506
+"177",11224,"compliance",0
+"178",11224,"free residential",0.0789473684210526
+"179",11225,"compliance",0.266666666666667
+"180",11225,"free residential",0.0344827586206897
+"181",11226,"compliance",0.111111111111111
+"182",11226,"free residential",0.0287769784172662
+"183",11228,"compliance",0.2
+"184",11228,"free residential",0.0412371134020619
+"185",11229,"compliance",0.0769230769230769
+"186",11229,"free residential",0.0359281437125748
+"187",11230,"compliance",0
+"188",11230,"free residential",0.0362694300518135
+"189",11231,"compliance",0
+"190",11231,"free residential",0.0293159609120521
+"191",11232,"compliance",0.1
+"192",11232,"free residential",0
+"193",11233,"compliance",0
+"194",11233,"free residential",0.0880829015544041
+"195",11234,"compliance",0
+"196",11234,"free residential",0.0675675675675676
+"197",11235,"free residential",0.018348623853211
+"198",11236,"compliance",0
+"199",11236,"free residential",0
+"200",11237,"free residential",0.0075187969924812
+"201",11238,"compliance",0
+"202",11238,"free residential",0.0323974082073434
+"203",11239,"free residential",0
+"204",11241,"free residential",0
+"205",11242,"free residential",0
+"206",11249,"free residential",0.0196078431372549
+"207",11354,"compliance",0.0681818181818182
+"208",11354,"free residential",0
+"209",11355,"compliance",0
+"210",11355,"free residential",0
+"211",11356,"compliance",0.2
+"212",11356,"free residential",0.0454545454545455
+"213",11357,"compliance",0.0769230769230769
+"214",11357,"free residential",0.0344827586206897
+"215",11358,"compliance",0.154761904761905
+"216",11358,"free residential",0.025974025974026
+"217",11360,"compliance",0
+"218",11360,"free residential",0
+"219",11361,"compliance",0
+"220",11361,"free residential",0.126984126984127
+"221",11362,"compliance",0
+"222",11362,"free residential",0
+"223",11363,"compliance",0
+"224",11363,"free residential",0
+"225",11364,"compliance",0
+"226",11364,"free residential",0
+"227",11365,"compliance",0
+"228",11365,"free residential",0.0169491525423729
+"229",11366,"free residential",0
+"230",11367,"free residential",0.0298507462686567
+"231",11368,"compliance",0
+"232",11368,"free residential",0.0377358490566038
+"233",11369,"compliance",0.2
+"234",11369,"free residential",0
+"235",11370,"free residential",0
+"236",11372,"compliance",0
+"237",11372,"free residential",0.018957345971564
+"238",11373,"compliance",0.333333333333333
+"239",11373,"free residential",0.0111111111111111
+"240",11374,"compliance",0
+"241",11374,"free residential",0.0117647058823529
+"242",11375,"compliance",0.0363636363636364
+"243",11375,"free residential",0.0255591054313099
+"244",11377,"compliance",0.0434782608695652
+"245",11377,"free residential",0.0206896551724138
+"246",11378,"compliance",0.0454545454545455
+"247",11378,"free residential",0.0416666666666667
+"248",11379,"compliance",0.111111111111111
+"249",11379,"free residential",0.0543478260869565
+"250",11385,"compliance",0.0655737704918033
+"251",11385,"free residential",0.0554016620498615
+"252",11411,"compliance",0
+"253",11411,"free residential",0.15
+"254",11412,"compliance",0.0714285714285714
+"255",11412,"free residential",0.024390243902439
+"256",11413,"compliance",0
+"257",11413,"free residential",0.0606060606060606
+"258",11414,"compliance",0
+"259",11414,"free residential",0
+"260",11415,"compliance",0.130434782608696
+"261",11415,"free residential",0.04
+"262",11416,"compliance",0
+"263",11416,"free residential",0
+"264",11417,"compliance",0.0625
+"265",11417,"free residential",0.0277777777777778
+"266",11418,"compliance",0.125
+"267",11418,"free residential",0
+"268",11419,"compliance",0
+"269",11419,"free residential",0.0303030303030303
+"270",11420,"compliance",0
+"271",11420,"free residential",0
+"272",11421,"compliance",0.142857142857143
+"273",11421,"free residential",0.0192307692307692
+"274",11422,"free residential",0.0769230769230769
+"275",11423,"compliance",0
+"276",11423,"free residential",0.04
+"277",11426,"compliance",0
+"278",11426,"free residential",0.0754716981132075
+"279",11427,"compliance",0.222222222222222
+"280",11427,"free residential",0
+"281",11428,"compliance",0
+"282",11428,"free residential",0
+"283",11429,"free residential",0.0740740740740741
+"284",11432,"compliance",0.0588235294117647
+"285",11432,"free residential",0.0298507462686567
+"286",11433,"compliance",0
+"287",11433,"free residential",0
+"288",11434,"compliance",0.0625
+"289",11434,"free residential",0.0731707317073171
+"290",11435,"compliance",0
+"291",11435,"free residential",0.0307692307692308
+"292",11436,"free residential",0.1
+"293",11691,"compliance",0.032258064516129
+"294",11691,"free residential",0.0238095238095238
+"295",11692,"free residential",0
+"296",11693,"compliance",0
+"297",11693,"free residential",0
+"298",11694,"compliance",0
+"299",11694,"free residential",0
+"300",11697,"free residential",0

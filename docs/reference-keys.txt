@@ -15,3 +15,7 @@ children-tested-for-lead-by-age-3
 children-under-6-yrs-with-elevated-blood-lead-levels-bll
 how-prevalent-is-lead-in-nyc-water-system
 how-are-children-in-nyc-affected-by-lead-poisoning
+data-loading-and-cleaning
+data-preprocessing
+compute-ratio-of-samples-exceeding-safety-threshold-and-group-by-zipcode
+join-at-the-tap-water-data-and-children-data

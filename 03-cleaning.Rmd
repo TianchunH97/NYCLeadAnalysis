@@ -1,14 +1,10 @@
 # Data transformation
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r}
 library(sqldf)
 ```
 
-## Load data
+## Data loading and cleaning
 
 Datasets are first downloaded as csv files and then read into R. 
 
@@ -19,16 +15,12 @@ children_6_yrs <- read.csv("Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels
 children_by_3 <- read.csv("Children_Tested_for_Lead_by_Age_3.csv")
 ```
 
-## Capitalize all borough names
-
 In the two datasets for at-the-tap water test results, the "Borough" column contain both uppercase and lowercase strings while refering to the same borough, hence we transformed all rows of "Borough" column to be uppercase strings.
 
 ```{r}
 free_residential$Borough <- toupper(free_residential$Borough)
 compliance$Borough <- toupper(compliance$Borough)
 ```
-
-## Unify units of lead level
 
 The units of at-the-tap lead level are different in two datasets. Hence, we transform the unit in "compliance" data from $\mu g/l$ to $mg/l$.
 
@@ -37,7 +29,7 @@ compliance$First.Draw.at.the.tap.Lead.level..µg.l. <- 0.001 * compliance$First.
 colnames(compliance)[6] <- "First.Draw.at.the.tap.Lead.level..mg.l."
 ```
 
-## Concat two datasets
+## Data preprocessing
 
 Since two at-the-tap lead level datasets have many variables in common, we pick out their common columns and merge them to be a single large table. Meanwhile, we add an extra column to denote which dataset the observation is originally from.
 
@@ -67,12 +59,19 @@ at_the_tap_merged <- rbind(compliance, free_residential[merged_col])
 
 ## Compute ratio of samples exceeding safety threshold and group by zipcode
 
+According to United States Environmental Protection Agency (EPA), a lead level over 0.015 mg/L is unsafe for human body. Hence, we add a binary label to show the safety status of the water sample and calculate the rate of having unsafe samples in each area.
+
 ```{r}
 rate_by_zipcode <- sqldf('SELECT 
                          Zipcode, source, AVG(over_threshold) as rate 
                          FROM at_the_tap_merged 
                          GROUP BY Zipcode, source')
 write.csv(rate_by_zipcode, 'tap_rate_by_zipcode.csv', row.names = TRUE)
+avg_by_zipcode <- sqldf('SELECT 
+                         Zipcode, source, AVG(`First.Draw.at.the.tap.Lead.level..mg.l.`) as avg_lead_level
+                         FROM at_the_tap_merged 
+                         GROUP BY Zipcode, source')
+write.csv(avg_by_zipcode, 'tap_avg_by_zipcode.csv', row.names = TRUE)
 ```
 
 ## Join at-the-tap water data and children data
