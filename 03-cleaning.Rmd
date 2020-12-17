@@ -55,6 +55,8 @@ compliance$over_threshold <- over_threshold_cp
 colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)] <- colnames(compliance)
 merged_col <- colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)]
 at_the_tap_merged <- rbind(compliance, free_residential[merged_col])
+write.csv(free_residential, "free_residential.csv", row.names = TRUE)
+write.csv(compliance, "compliance,csv", row.names = TRUE)
 ```
 
 ## Compute ratio of samples exceeding safety threshold and group by zipcode

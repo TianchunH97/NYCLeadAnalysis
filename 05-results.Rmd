@@ -11,8 +11,8 @@ free_residential <- read.csv("free_residential.csv")
 compliance <- read.csv("compliance.csv")
 children_6_yrs <- read.csv("Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv")
 lead_free <- free_residential %>%
-  select(Date.Collected, First.Draw.at.the.tap.Lead.level..Âµg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
-  mutate(year = substr(Date.Collected, 7, 10), over_threshold = (First.Draw.at.the.tap.Lead.level..Âµg.l. > 0.015 |  Lead.1.2.Minute.Flush..mg.L. > 0.015)) %>%
+  select(Date.Collected, First.Draw.at.the.tap.Lead.level..mg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
+  mutate(year = substr(Date.Collected, 7, 10), over_threshold = (First.Draw.at.the.tap.Lead.level..mg.l. > 0.015 |  Lead.1.2.Minute.Flush..mg.L. > 0.015)) %>%
   select(year, over_threshold) %>%
   group_by(year, over_threshold) %>%
   summarise(count = n()) %>%
@@ -54,9 +54,9 @@ According to EPA(Environmental Protection Agency), the maximum allowable concent
 
 ```{r, warning=FALSE, message=FALSE, results=FALSE}
 lead_con <- free_residential %>%
-  select( First.Draw.at.the.tap.Lead.level..Âµg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
+  select( First.Draw.at.the.tap.Lead.level..mg.l., Lead.1.2.Minute.Flush..mg.L.) %>%
   na.omit %>%
-  rename(first.draw = First.Draw.at.the.tap.Lead.level..Âµg.l., "1-2.minute.draw" = Lead.1.2.Minute.Flush..mg.L. ) %>%
+  rename(first.draw = First.Draw.at.the.tap.Lead.level..mg.l., "1-2.minute.draw" = Lead.1.2.Minute.Flush..mg.L. ) %>%
   pivot_longer(cols = everything(), names_to = "Density", values_to = "Lead Concentration(mg/L)") %>%
   filter(`Lead Concentration(mg/L)` < 0.01)
 
@@ -75,7 +75,7 @@ We use the "Free Residential at-the-tap Lead and Copper Data" dataset to test th
 
 ## How are children in NYC affected by lead poisoning?
 ```{r, warning=FALSE, message=FALSE}
-children_bar <- children_6_yrs %>% rename(`5 <= BLL <10 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.Âµg.dL.per.1.000.tested, `10 <= BLL <15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..10.Âµg.dL.per.1.000.tested, `BLL >=15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..15.Âµg.dL.per.1.000.tested) %>%
+children_bar <- children_6_yrs %>% rename(`5 <= BLL <10 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested, `10 <= BLL <15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..10.µg.dL.per.1.000.tested, `BLL >=15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..15.µg.dL.per.1.000.tested) %>%
   rename(year = time_period) %>%
   mutate(year = as.character(year)) %>%
   filter(geo_type =="Citywide") %>%
@@ -101,7 +101,7 @@ We subset our dataset to focus on the blood lead levels (BLL) of children living
 
 ```{r, warning=FALSE, message=FALSE}
 children <- children_6_yrs %>%
-  rename(`sample_size(in thousand)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested, `high_BLL_children_per_1000_tested(sum of 2005-2016)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.Âµg.dL.per.1.000.tested) %>%
+  rename(`sample_size(in thousand)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested, `high_BLL_children_per_1000_tested(sum of 2005-2016)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested) %>%
   select(geo_area_name, `sample_size(in thousand)`, `high_BLL_children_per_1000_tested(sum of 2005-2016)`) %>%
   group_by(geo_area_name) %>%
   summarise(`sample_size(in thousand)` = sum(`sample_size(in thousand)`), `high_BLL_children_per_1000_tested(sum of 2005-2016)` = sum(`high_BLL_children_per_1000_tested(sum of 2005-2016)`))

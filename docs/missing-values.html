@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Missing values | Prevalence and Effects of Lead in NYC’s Water System</title>
-  <meta name="description" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC’s Water System" />
+  <title>Chapter 4 Missing values | Prevalence and Effects of Lead in NYC's Water System</title>
+  <meta name="description" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC's Water System" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC’s Water System" />
+  <meta property="og:title" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC's Water System" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC’s Water System" />
+  <meta name="twitter:title" content="Chapter 4 Missing values | Prevalence and Effects of Lead in NYC's Water System" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Tianchun Huang, Erdong Wang, Jiaxi Zhou" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2020-12-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,9 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 
@@ -80,13 +77,16 @@
 <li class="chapter" data-level="2.4" data-path="data-sources.html"><a href="data-sources.html#children-under-6-yrs-with-elevated-blood-lead-levels-bll"><i class="fa fa-check"></i><b>2.4</b> Children Under 6 yrs with Elevated Blood Lead Levels (BLL)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#load-data"><i class="fa fa-check"></i><b>3.1</b> Load data</a></li>
-<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#capitalize-all-borough-names"><i class="fa fa-check"></i><b>3.2</b> Capitalize all borough names</a></li>
-<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#unify-units-of-lead-level"><i class="fa fa-check"></i><b>3.3</b> Unify units of lead level</a></li>
-<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#concat-two-datasets"><i class="fa fa-check"></i><b>3.4</b> Concat two datasets</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#data-loading-and-cleaning"><i class="fa fa-check"></i><b>3.1</b> Data loading and cleaning</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-preprocessing"><i class="fa fa-check"></i><b>3.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#compute-ratio-of-samples-exceeding-safety-threshold-and-group-by-zipcode"><i class="fa fa-check"></i><b>3.3</b> Compute ratio of samples exceeding safety threshold and group by zipcode</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#join-at-the-tap-water-data-and-children-data"><i class="fa fa-check"></i><b>3.4</b> Join at-the-tap water data and children data</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#how-prevalent-is-lead-in-nyc-water-system"><i class="fa fa-check"></i><b>5.1</b> How prevalent is lead in NYC water system?</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#how-are-children-in-nyc-affected-by-lead-poisoning"><i class="fa fa-check"></i><b>5.2</b> How are children in NYC affected by lead poisoning?</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -100,7 +100,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prevalence and Effects of Lead in NYC’s Water System</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Prevalence and Effects of Lead in NYC's Water System</a>
           </h1>
         </div>
 
@@ -110,10 +110,9 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-4-1.png" width="672" />
-<img src="finalproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>We have four datasets in total. In the “Compliance at-the-tap Lead and Copper” dataset, there is no missing value. In the “Children Tested for Lead by Age 3” dataset, the only two variables that have missing values are <code>Children.tested.for.lead.by.age.3.years.Number._NOTES</code> and <code>Children.tested.for.lead.by.age.3.years.Percentage._NOTES</code>. In fact all the data values in these two variables are missing. These two variables are supposed to store additional notes apply to the other two variables. The reason for the missing values might be that the notes are totally unnecessary. We may delete these two columns.</p>
-<p>The other two datasets have missing values which show some distribution patterns so we will make visna plots to analysis it. From the first plot, we see that in “Free Residential at-the-tap Lead and Copper” dataset, there are 6 columns that have missing values. Most rows miss data from the variable <code>Lead.5.Minute.Flush..mg.L.</code> and <code>Copper.5.minute.Flush..mg.L.</code>. These two variables store the concentration of lead and copper in the 5 minute flush sample. Since all the water samples are collected by residents using sampling kits provided by DEP, the reason for the missing value might be that most residents are unwilling to waste time and water to keep the tap opening for 5 minutes. Very few rows have missing values in other variables and the pattern is random. In the “Children Under 6 yrs with Elevated Blood Lead Levels”, the variable <code>Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested._NOTES</code> has missing values in all rows. We can just delete all columns with ‘notes’ since they are meaning less to our analysis. There are also some missing values in the variable <code>borough_id</code>. In each row with the missing value, the <code>geo_area_name</code> is <code>New York City</code>. We can conclude that they did not assign a borough id to New York City.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /> <img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>We have four datasets in total. In the &quot;Compliance at-the-tap Lead and Copper&quot; dataset, there is no missing value. In the &quot;Children Tested for Lead by Age 3&quot; dataset, the only two variables that have missing values are <code>Children.tested.for.lead.by.age.3.years.Number._NOTES</code> and <code>Children.tested.for.lead.by.age.3.years.Percentage._NOTES</code>. In fact all the data values in these two variables are missing. These two variables are supposed to store additional notes apply to the other two variables. The reason for the missing values might be that the notes are totally unnecessary. We may delete these two columns.</p>
+<p>The other two datasets have missing values which show some distribution patterns so we will make visna plots to analysis it. From the first plot, we see that in &quot;Free Residential at-the-tap Lead and Copper&quot; dataset, there are 6 columns that have missing values. Most rows miss data from the variable <code>Lead.5.Minute.Flush..mg.L.</code> and <code>Copper.5.minute.Flush..mg.L.</code>. These two variables store the concentration of lead and copper in the 5 minute flush sample. Since all the water samples are collected by residents using sampling kits provided by DEP, the reason for the missing value might be that most residents are unwilling to waste time and water to keep the tap opening for 5 minutes. Very few rows have missing values in other variables and the pattern is random. In the &quot;Children Under 6 yrs with Elevated Blood Lead Levels&quot;, the variable <code>Children.under.6.years.with.elevated.blood.lead.levels..BLL..Number.Tested._NOTES</code> has missing values in all rows. We can just delete all columns with 'notes' since they are meaning less to our analysis. There are also some missing values in the variable <code>borough_id</code>. In each row with the missing value, the <code>geo_area_name</code> is <code>New York City</code>. We can conclude that they did not assign a borough id to New York City.</p>
 
 </div>
             </section>
@@ -172,6 +171,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
