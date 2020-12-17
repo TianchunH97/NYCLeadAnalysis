@@ -2,6 +2,7 @@
 ```{r}
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 library(ggridges)
 ```
 
@@ -73,6 +74,34 @@ Since lead in water seems inevitable in New York, we are finding a way to reduce
 
 We use the "Free Residential at-the-tap Lead and Copper Data" dataset to test this hypothesis. Each residential volunteer submitted two water samples: one is collected right after the tap is opened and the other is collected after the tap has flushed for 1-2 minutes. We use a ridgeline plot to compare the lead concentration between two types of water samples. The plot gives us two density curves with lead concentration of water samples on the x-axis and density on the y-axis, one for first draw samples and the other for 1-2 minute draw. We can observe that among 1-2 minutes draw samples,the percentage of water samples with lead concentration around 0 is higher than that of first draw samples. On the contrary, the percentage of water samples with large lead concentration is higher in 1-2 minutes draw samples. Therefore, we can conclude that lead concentration in water will decrease as the tap is opening and we can reduce our exposure to lead in drinking water by waiting for some time after opening the tap. 
 
+```{r}
+tap_rate <- read_csv("tap_rate_by_zipcode.csv") %>% mutate(Zipcode = as.character(Zipcode))
+tap_rate_residential <- tap_rate %>% filter(source == "free residential") %>% arrange(rate) %>% top_n(10)
+tap_rate_compliance <- tap_rate %>% filter(source == "compliance") %>% arrange(rate) %>% top_n(10)
+tap_rate_bar <- bind_rows(tap_rate_residential, tap_rate_compliance)
+ggplot(tap_rate_bar, aes(x = fct_inorder(Zipcode), y = rate)) +
+  geom_bar(stat = "identity", fill = "#7C9B99") +
+  facet_grid(rows = vars(source), scales = "free", space = "free") +
+  ggtitle ("Areas with Relative High Rate of Unsafe Water Samples in NYC") +
+  labs(x = "Zipcode", y = "Rate of unsafe samples with lead level over 0.015 mg/L") +
+  coord_flip() + theme_grey()
+```
+To further investigate the prevalence of lead in tap water in NYC, we examined the difference of lead level in water samples over different areas across the city. Labeling the water samples with lead level over 0.015 mg/L as unsafe water, the above Bar Chart shows the proportion of unsafe water samples in areas represented by the unit of zip code. It summarizes the top 10 areas with high rate of unsafe water samples in NYC for both compliance and free residential datasets. 
+
+```{r}
+tap_avg <- read_csv("tap_avg_by_zipcode.csv") %>% mutate(Zipcode = as.character(Zipcode))
+tap_avg_residential <- tap_avg %>% filter(source == "free residential") %>% arrange(avg_lead_level) %>% top_n(10)
+tap_avg_compliance <- tap_avg %>% filter(source == "compliance") %>% arrange(avg_lead_level) %>% top_n(10)
+tap_avg_bar <- bind_rows(tap_avg_residential, tap_avg_compliance)
+ggplot(tap_avg_bar, aes(x = fct_inorder(Zipcode), y = avg_lead_level)) +
+  geom_bar(stat = "identity", fill = "#00AFBB") +
+  facet_grid(rows = vars(source), scales = "free", space = "free") +
+  ggtitle ("Average Lead Level of At-the-tap Water Samples in NYC") +
+  labs(x = "Zipcode", y = "Average lead level (mg/L)") +
+  coord_flip() + theme_grey()
+```
+
+
 ## How are children in NYC affected by lead poisoning?
 ```{r, warning=FALSE, message=FALSE}
 children_bar <- children_6_yrs %>% rename(`5 <= BLL <10 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested, `10 <= BLL <15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..10.µg.dL.per.1.000.tested, `BLL >=15 (mcg/dL)` = Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate.BLL..15.µg.dL.per.1.000.tested) %>%
@@ -125,6 +154,14 @@ In the graph, regions are sorted by the number of children with high BLL per 100
 
 From the plot, we can see that the high BLL rates in different regions differ. Some regions such as Greenpoint and Borough Park has high BLL rates while some regions such as Upper East Side and Willowbrook has much lower BLL rates than other regions. The reason might be that in some places the water pipes and solders contain more lead and government should notice that and replace some of them to guarantee the health of residents.
 
+## Is there any relationship between the lead in NYC water system and the lead level in children's blood?
+```{r}
+relation <- read.csv("join_2016.csv")
+ggplot(relation, aes(rate, children_rate)) + geom_point(color = "#7C9B99") +
+  labs(x = "Average lead level in tap water (mg/L)", y = "Lead level in blood (mcg/dL)") +
+  ggtitle("Potential Relationship between Lead in Water and in Children's Blood") +
+  theme_light()
+```
 
 
 
