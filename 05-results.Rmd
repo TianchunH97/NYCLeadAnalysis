@@ -156,8 +156,8 @@ From the plot, we can see that the high BLL rates in different regions differ. S
 
 ## Is there any relationship between the lead in NYC water system and the lead level in children's blood?
 ```{r}
-relation <- read.csv("join_2016.csv")
-ggplot(relation, aes(rate, children_rate)) + geom_point(color = "#7C9B99") +
+relation <- read.csv("scatter_data.csv")
+ggplot(relation, aes(rate_16, crate_16)) + geom_point(color = "#7C9B99") +
   labs(x = "Average lead level in tap water (mg/L)", y = "Lead level in blood (mcg/dL)") +
   ggtitle("Potential Relationship between Lead in Water and in Children's Blood") +
   theme_light()
