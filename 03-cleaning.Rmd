@@ -55,8 +55,8 @@ compliance$over_threshold <- over_threshold_cp
 colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)] <- colnames(compliance)
 merged_col <- colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)]
 at_the_tap_merged <- rbind(compliance, free_residential[merged_col])
-write.csv(free_residential, "free_residential.csv", row.names = TRUE)
-write.csv(compliance, "compliance,csv", row.names = TRUE)
+write.csv(free_residential, "free_residential.csv")
+write.csv(compliance, "compliance,csv")
 ```
 
 ## Compute ratio of samples exceeding safety threshold and group by zipcode
@@ -68,12 +68,12 @@ rate_by_zipcode <- sqldf('SELECT
                          Zipcode, source, AVG(over_threshold) as rate 
                          FROM at_the_tap_merged 
                          GROUP BY Zipcode, source')
-write.csv(rate_by_zipcode, 'tap_rate_by_zipcode.csv', row.names = TRUE)
+write.csv(rate_by_zipcode, 'tap_rate_by_zipcode.csv')
 avg_by_zipcode <- sqldf('SELECT 
                          Zipcode, source, AVG(`First.Draw.at.the.tap.Lead.level..mg.l.`) as avg_lead_level
                          FROM at_the_tap_merged 
                          GROUP BY Zipcode, source')
-write.csv(avg_by_zipcode, 'tap_avg_by_zipcode.csv', row.names = TRUE)
+write.csv(avg_by_zipcode, 'tap_avg_by_zipcode.csv')
 ```
 
 ## Join at-the-tap water data and children data
@@ -83,7 +83,7 @@ Since the water dataset contains zipcode information and the children data conta
 ```{r}
 dict <- read.csv("area_names.csv")
 children_rate_by_area_year <- sqldf("SELECT 
-                                    time_period, geo_area_name, `Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested` AS children_rate
+                                    time_period, geo_area_name, borough_id,  `Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested` AS children_rate
                                     FROM children_6_yrs 
                                     WHERE geo_type = 'Neighborhood (UHF 42)' 
                                     AND time_period > 2013
@@ -100,15 +100,18 @@ water_rate_by_area <- sqldf("SELECT
                               AND CAST(SUBSTR(compliance.`Date.Collected`, 7, 4) AS int) <= 2016) x
                             GROUP BY Name
                             ")
-join_all <- sqldf("SELECT a.time_period, a.geo_area_name, a.children_rate, b.rate 
+join_all <- sqldf("SELECT a.time_period, a.geo_area_name, a.borough_id, a.children_rate, b.rate 
                   FROM children_rate_by_area_year a 
                   LEFT JOIN water_rate_by_area b 
                   ON a.geo_area_name = b.Name
                   WHERE b.Name is not null")
-join_2014 <- sqldf("SELECT * FROM join_all WHERE time_period = 2014 ORDER BY geo_area_name")
-join_2015 <- sqldf("SELECT * FROM join_all WHERE time_period = 2015 ORDER BY geo_area_name")
-join_2016 <- sqldf("SELECT * FROM join_all WHERE time_period = 2016 ORDER BY geo_area_name")
-write.csv(join_2014, 'join_2014.csv', row.names = TRUE)
-write.csv(join_2015, 'join_2015.csv', row.names = TRUE)
-write.csv(join_2016, 'join_2016.csv', row.names = TRUE)
+scatter <- sqldf("SELECT 
+                 a.geo_area_name, a.borough_id, a.rate as rate_14, a.children_rate as crate_14, b.rate as rate_15, b.children_rate as crate_15, c.rate as rate_16, c.children_rate as crate_16
+                 FROM (SELECT * FROM join_all WHERE time_period = 2014) a 
+                 LEFT JOIN (SELECT * FROM join_all WHERE time_period = 2015) b 
+                 ON a.geo_area_name = b.geo_area_name 
+                 LEFT JOIN (SELECT * FROM join_all WHERE time_period = 2016) c 
+                 ON a.geo_area_name = c.geo_area_name 
+                 ")
+write.csv(scatter, "scatter_data.csv")
 ```

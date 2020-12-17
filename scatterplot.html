@@ -8,19 +8,20 @@
 
   <body>
 
-  <h2>Scatter plot</h2>
+  <h2>Is there any relationship between at-the-tap water lead level and lead level in children's blood? </h2>
 
    <div id="my_dataviz">
      
-    <p id="change_data">click here to change data<p>
-    <p id="change_back">click here to change back<p>
+    <p id="d2014">click here to see data of 2014<p>
+    <p id="d2015">click here to see data of 2015<p>
+    <p id="d2016">click here to see data of 2016<p>
     <p id="note">move your mouse over the dots to see details!<p>
 
    </div>
 
   <script>
 
-    var data = [
+    var data1 = [
       [1, 20, 1], [2, 40, 1], [3, 60, 1],
       [4, 80, 2], [5, 100, 2], [6, 120, 2],
       [7, 140, 3], [8, 160, 3], [9, 200, 3]
@@ -45,6 +46,8 @@
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("https://github.com/TianchunH97/NYCLeadAnalysis/blob/main/join_2016.csv", function(data) {
 
     // Add X axis
     var xScale = d3.scaleLinear()
@@ -116,6 +119,10 @@
     .domain([1, 2, 3])
     .range([ "#F8766D", "#00BA38", "#619CFF"])
 
+    var borough_map = d3.scaleOrdinal()
+    .domain([1, 2, 3, 4, 5])
+    .range(["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"])
+
     // Add dots
     svg.append('g')
       .selectAll("circle")
@@ -179,6 +186,8 @@
         .text(function(d){ return d})
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
+
+    });
 
     </script>
 
