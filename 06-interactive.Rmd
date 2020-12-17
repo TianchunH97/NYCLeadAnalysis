@@ -1,3 +1,13 @@
 # Interactive component
 
+<script src="https://d3js.org/d3.v6.js"></script>
 
+  <div id="my_dataviz">
+     
+  <p id="change_data">click here to change data<p>
+  <p id="change_back">click here to change back<p>
+  <p id="note">move your mouse over the dots to see details!<p>
+
+  </div>
+
+<script src="scripts/scatter.js"></script>
