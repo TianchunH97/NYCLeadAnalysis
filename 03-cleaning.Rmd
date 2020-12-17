@@ -4,6 +4,10 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(sqldf)
+```
+
 ## Load data
 
 Datasets are first downloaded as csv files and then read into R. 
@@ -41,16 +45,69 @@ Since two at-the-tap lead level datasets have many variables in common, we pick 
 len_fr <- length(free_residential$Kit.ID)
 len_cp <- length(compliance$KIT.ID.Number)
 from_fr <- c()
+over_threshold_fr <- c()
 for (i in 1:len_fr){
   from_fr<-c(from_fr,"free residential")
+  over_threshold_fr<-c(over_threshold_fr, free_residential[i, colnames(free_residential)[6]] > 0.015)
 }
 free_residential$source <- from_fr
+free_residential$over_thresold <- over_threshold_fr
 from_cp <- c()
+over_threshold_cp <- c()
 for (i in 1:len_cp){
-  from_cp<-c(from_cp,"free residential")
+  from_cp<-c(from_cp,"compliance")
+  over_threshold_cp<-c(over_threshold_cp, compliance[i, colnames(compliance)[6]] > 0.015)
 }
 compliance$source <- from_cp
-colnames(free_residential)[c(1,2,3,4,5,6,9,12)] <- colnames(compliance)
-merged_col <- colnames(free_residential)[c(1,2,3,4,5,6,9,12)]
+compliance$over_threshold <- over_threshold_cp
+colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)] <- colnames(compliance)
+merged_col <- colnames(free_residential)[c(1,2,3,4,5,6,9,12,13)]
 at_the_tap_merged <- rbind(compliance, free_residential[merged_col])
+```
+
+## Compute ratio of samples exceeding safety threshold and group by zipcode
+
+```{r}
+rate_by_zipcode <- sqldf('SELECT 
+                         Zipcode, source, AVG(over_threshold) as rate 
+                         FROM at_the_tap_merged 
+                         GROUP BY Zipcode, source')
+write.csv(rate_by_zipcode, 'tap_rate_by_zipcode.csv', row.names = TRUE)
+```
+
+## Join at-the-tap water data and children data
+
+Since the water dataset contains zipcode information and the children data contains name of the neighbourhoods, we make a dictionary by looking up the zipcodes on official websites and join the two datasets using the dictionary. In this way, we are able to explore the relationship between the rate of having unsafe water samples and the rate of having unhealthy children blood samples.
+
+```{r}
+dict <- read.csv("area_names.csv")
+children_rate_by_area_year <- sqldf("SELECT 
+                                    time_period, geo_area_name, `Children.under.6.years.with.elevated.blood.lead.levels..BLL..Rate..BLL..5.µg.dL.per.1.000.tested` AS children_rate
+                                    FROM children_6_yrs 
+                                    WHERE geo_type = 'Neighborhood (UHF 42)' 
+                                    AND time_period > 2013
+                                    ORDER BY geo_area_name")
+water_rate_by_area <- sqldf("SELECT 
+                            Name, AVG(over_threshold) as rate                       
+                            FROM (
+                              SELECT 
+                                compliance.*, dict.Name
+                              FROM compliance
+                              LEFT JOIN dict
+                              ON compliance.Zipcode = dict.Zipcode
+                              WHERE dict.Name is not NULL
+                              AND CAST(SUBSTR(compliance.`Date.Collected`, 7, 4) AS int) <= 2016) x
+                            GROUP BY Name
+                            ")
+join_all <- sqldf("SELECT a.time_period, a.geo_area_name, a.children_rate, b.rate 
+                  FROM children_rate_by_area_year a 
+                  LEFT JOIN water_rate_by_area b 
+                  ON a.geo_area_name = b.Name
+                  WHERE b.Name is not null")
+join_2014 <- sqldf("SELECT * FROM join_all WHERE time_period = 2014 ORDER BY geo_area_name")
+join_2015 <- sqldf("SELECT * FROM join_all WHERE time_period = 2015 ORDER BY geo_area_name")
+join_2016 <- sqldf("SELECT * FROM join_all WHERE time_period = 2016 ORDER BY geo_area_name")
+write.csv(join_2014, 'join_2014.csv', row.names = TRUE)
+write.csv(join_2015, 'join_2015.csv', row.names = TRUE)
+write.csv(join_2016, 'join_2016.csv', row.names = TRUE)
 ```
