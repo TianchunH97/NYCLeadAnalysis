@@ -1,2 +1,23 @@
 # Conclusion
 
+## Findings
+
+Through our analysis, we are able to give out the following three key findings:
+
+1. Although the degree of lead contamination in water decreased in recent years, lead is still prevalent in NYC water system, which poses  threat to residents' health. In addition, the extent of lead contamination also varies in different regions of New York.
+
+2. Many children living in New York suffer from lead poisoning though the situation is getting better recently. Government should pay more attention to this issue.
+
+3. Although we cannot find a strict casual relationship of children's blood lead levels and lead contamination in drinking water, we still observed some patterns such that the place with better children blood samples also has better water samples, and the place with worse children blood samples have relatively worse water samples. Government should attach greater importance to the lead contamination to guarantee children's health.
+
+## Limitation
+
+The quality of our data makes one of our limitations. The unbalanced size of samples in different years may affect the accuracy of our results. Moreover, data for children's blood lead level are collected from 2005 to 2016, which may not represent the current status.
+
+## Future direction
+
+There're many future directions we could work on. Since we have already explored the neighbourhoods with worst water quality or worst blood samples, we could further look for data of these specific areas to investigate the cause of the bad water quality or children's health. Besides, we could also look for other lead related datasets in New York City and analyze the geographical differenece in new data to see if it has any correlation with children's high blood lead level or bad water quality.
+
+## Lessons learned
+
+We learned to clean and manipulate large amounts of data to produce analysis which may raise public awareness of lead poisoning. We realized that as data scientists, we can use big data to make contributions to the communities we live in. This is a wonderful experience to us. 
