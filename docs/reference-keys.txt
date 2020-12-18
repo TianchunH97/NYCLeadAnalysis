@@ -13,6 +13,10 @@ missing-values
 results
 how-prevalent-is-lead-in-nyc-water-system
 how-are-children-in-nyc-affected-by-lead-poisoning
+is-there-any-relationship-between-the-lead-in-nyc-water-system-and-the-lead-level-in-childrens-blood
 interactive-component
 conclusion
-is-there-any-relationship-between-the-lead-in-nyc-water-system-and-the-lead-level-in-childrens-blood
+findings
+limitation
+future-direction
+lessons-learned
