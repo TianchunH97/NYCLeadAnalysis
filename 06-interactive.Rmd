@@ -2,12 +2,15 @@
 
 <script src="https://d3js.org/d3.v6.js"></script>
 
-  <div id="my_dataviz">
-     
-  <p id="change_data">click here to change data<p>
-  <p id="change_back">click here to change back<p>
-  <p id="note">move your mouse over the dots to see details!<p>
+   <h2>Is there any relationship between at-the-tap water lead level and lead level in children's blood? </h2>
 
-  </div>
+   <div id="my_dataviz">
+     
+   <p id="d2014">click here to see data of 2014<p>
+   <p id="d2015">click here to see data of 2015<p>
+   <p id="d2016">click here to see data of 2016<p>
+   <p id="note">move your mouse over the dots to see details!<p>
+
+   </div>
 
 <script src="scripts/scatter.js"></script>

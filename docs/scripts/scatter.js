@@ -1,14 +1,3 @@
-var data1 = [
-  [1, 20, 1], [2, 40, 1], [3, 60, 1],
-  [4, 80, 2], [5, 100, 2], [6, 120, 2],
-  [7, 140, 3], [8, 160, 3], [9, 200, 3]
-]
-
-var data2 = [
-  [18, 16, 1], [16, 32, 1], [14, 48, 1],
-  [12, 64, 2], [10, 80, 2], [8, 96, 2],
-  [6, 112, 3], [4, 128, 3], [2, 144, 3]
-]
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
@@ -24,7 +13,7 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/join_2016.csv", function(data) { 
+d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/scatter_data.csv", function(data) { 
 
   // Add X axis
   var xScale = d3.scaleLinear()
@@ -79,7 +68,7 @@ d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/join_
 
   var mousemove = function(event, d) {
     tooltip
-      .html("data: (" + d[2] + ", " + d[3] + "), borough: " + d[1])
+      .html("data: (" + d. + ", " + d[3] + "), borough: " + d[1])
       .style("left", (d3.pointer(event)[0]+60) + "px")
       .style("top", (d3.pointer(event)[1]+150) + "px");
   }
@@ -93,8 +82,8 @@ d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/join_
 
   // Color scale
   var color = d3.scaleOrdinal()
-  .domain([1, 2, 3])
-  .range([ "#F8766D", "#00BA38", "#619CFF"])
+  .domain([1, 2, 3, 4, 5])
+  .range([ "#F8766D", "#00BA38", "#619CFF", "9A9A9A", "DDD378"])
 
   var borough_map = d3.scaleOrdinal()
     .domain([1, 2, 3, 4, 5])
@@ -106,10 +95,10 @@ d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/join_
     .data(data)
     .enter()
     .append("circle")
-      .attr("cx", function(d) {return xScale(d[3]);})
-      .attr("cy", function(d) {return yScale(d[2]);})
+      .attr("cx", function(d) {return xScale(d.rate_16);})
+      .attr("cy", function(d) {return yScale(d.crate_16);})
       .attr("r", 5)
-      .style("fill", function(d) {return color(d[0]);})
+      .style("fill", function(d) {return color(d.borough_id);})
     .on("mouseover", mouseover )
     .on("mousemove", mousemove )
     .on("mouseleave", mouseleave )
@@ -120,24 +109,33 @@ d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/join_
 
     var paraID = d3.select(this).attr("id");
 
-    if (paraID == "change_data") {
+    if (paraID == "d2015") {
       svg.selectAll("circle")
-        .data(data2)
+        .data(data)
         .transition()
         .duration(2000)
-          .attr("cx", function(d) {return xScale(d[0]);})
-          .attr("cy", function(d) {return yScale(d[1]);})
+          .attr("cx", function(d) {return xScale(d.rate_15);})
+          .attr("cy", function(d) {return yScale(d.crate_15);})
           .attr("r", 5)
-          .style("fill", function(d) {return color(d[2]);})
+          .style("fill", function(d) {return color(d.borough_id);})
+    } else if (paraID == "d2014") {
+      svg.selectAll("circle")
+        .data(data)
+        .transition()
+        .duration(2000)
+          .attr("cx", function(d) {return xScale(d.rate_14);})
+          .attr("cy", function(d) {return yScale(d.crate_14;})
+          .attr("r", 5)
+          .style("fill", function(d) {return color(d.borough_id);})
     } else {
       svg.selectAll("circle")
         .data(data)
         .transition()
         .duration(2000)
-          .attr("cx", function(d) {return xScale(d[3]);})
-          .attr("cy", function(d) {return yScale(d[2]);})
+          .attr("cx", function(d) {return xScale(d.rate_16);})
+          .attr("cy", function(d) {return yScale(d.crate_16;})
           .attr("r", 5)
-          .style("fill", function(d) {return color(d[0]);})
+          .style("fill", function(d) {return color(d.borough_id);})
     }
   });
 
