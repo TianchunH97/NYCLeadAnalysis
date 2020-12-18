@@ -86,7 +86,7 @@ d3.csv("https://raw.githubusercontent.com/TianchunH97/NYCLeadAnalysis/main/scatt
       tooltip
         .html(d.geo_area_name)
         .style("left", (d3.pointer(event)[0]+60) + "px")
-        .style("top", (d3.pointer(event)[1]+190) + "px");
+        .style("top", (d3.pointer(event)[1]+400) + "px");
     }
 
     var mouseleave = function(d) {
